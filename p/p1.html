@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Place holder</title>
+</head>
+<body>
+    <!-- <a href="https://jsonplaceholder.typicode.com/comments/">h</a> -->
+    <div id="hey">
+    </div>
+    <div id="details">
+
+    </div>
+    <div class="emai"></div>
+
+    <div id="comments">
+
+    </div>
+    <button onclick="yo()">Load</button>
+    <script>
+
+
+        const yo = () => {
+            fetch('https://jsonplaceholder.typicode.com/comments')
+                .then(res => res.json())
+                .then(data => yoi(data))
+        }
+
+        // yo()s
+        // loadData()
+        const yoi = data => {
+            // const div = document.getElementById('hey').textContent = '';
+            data.forEach(d => {
+                const comments = document.getElementById('comments');
+                const div = document.getElementById('hey');
+                const pForP = document.createElement('p');
+                const p = document.createElement('p');
+                p.innerText = `${d.name} and this is the emial id:${d.email}`;
+
+                pForP.innerHTML = `<p onclick="loadCommentsId(${d.id})">${d.body}</p>`;
+                comments.appendChild(pForP);
+                // div.appendChild(p);
+                // const pForP = document.createElement('p');
+                // pForP.textContent = `${d.body}`;
+                // comments.appendChild(pForP);
+                // div.innerText = `${d.name}`;
+                // const email=document.getElementByid('email');
+                // const emailP=createElement("p");
+                // p.textContent=`this is the emial id:${d.email}`;
+                // const commentsFitch = () => {
+                //     fetch
+                // }
+
+
+            })
+
+
+        }
+        loadCommentsId = id => {
+            fetch(`https://jsonplaceholder.typicode.com/comments/${id}`)
+                .then(res => res.json())
+                .then(data => de(data))
+        }
+        const de = details => {
+            document.getElementById('comments').textContent = '';
+            const div = document.getElementById('details');
+            div.innerHTML = `<a href="https://jsonplaceholder.typicode.com/comments/${details.id}">Load comments data details</a>`;
+
+        }
+    </script>
+</body>
+</html>
